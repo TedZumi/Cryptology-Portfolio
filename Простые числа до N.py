@@ -1,5 +1,10 @@
 import random
+from LegendreJacobian import calculateJacobian, prime_factors, extended_gcd
 
+
+# mod = modulo(a, (p - 1) / 2, p)
+# Generate a random number a
+        # a = random.randrange(p - 1) + 1
 
 # modulo function to perform binary
 # exponentiation
@@ -14,47 +19,6 @@ def modulo(base, exponent, mod):
     return x % mod
 
 
-# To calculate Jacobian symbol of a
-# given number
-def calculateJacobian(a, n):
-    if (a == 0):
-        return 0  # (0/n) = 0
-    ans = 1
-    if (a < 0):
-        # (a/n) = (-a/n)*(-1/n)
-        a = -a
-        if (n % 4 == 3):
-            # (-1/n) = -1 if n = 3 (mod 4)
-            ans = -ans
-    if (a == 1):
-        return ans  # (1/n) = 1
-    while (a):
-        if (a < 0):
-            # (a/n) = (-a/n)*(-1/n)
-            a = -a
-            if (n % 4 == 3):
-                # (-1/n) = -1 if n = 3 (mod 4)
-                ans = -ans
-
-        while (a % 2 == 0):
-            a = a // 2
-            if (n % 8 == 3 or n % 8 == 5):
-                ans = -ans
-
-        a, n = n, a
-        if (a % 4 == 3 and n % 4 == 3):
-            ans = -ans
-        a = a % n
-
-        if (a > n // 2):
-            a = a - n
-
-    if (n == 1):
-        return ans
-
-    return 0
-
-
 # To perform the Solovay- Strassen
 # Primality Test
 def solovoyStrassen(p, iterations):
@@ -64,29 +28,40 @@ def solovoyStrassen(p, iterations):
         return False
 
     for i in range(iterations):
-
-        # Generate a random number a
         a = random.randrange(p - 1) + 1
-        jacobian = (p + calculateJacobian(a, p)) % p
-        mod = modulo(a, (p - 1) / 2, p)
-
-        if (jacobian == 0 or mod != jacobian):
-            return False
-
+        # print(f"a = {a}")
+        factors = prime_factors(a)
+        if len(factors) > 1:
+            nod, x_1, y_1 = extended_gcd(a, p)
+            # print(nod)
+            if nod != 1:
+                # print(f"{a} и {p} не взаимно простые, символ Якоби посчитать нельзя")
+                return False
+            else:
+                jacobian = calculateJacobian(a, factors)
+                # print(f"jacobian = {jacobian}")
+                mod = a**((p-1) // 2) % p
+                while mod != -1 and mod != 1:
+                    mod -= p
+                # print(f"mod = {mod}")
+                if (jacobian == 0 or mod != jacobian):
+                    return False
     return True
 
 
 # Driver Code
-iterations = 50
-num1 = 15
-num2 = 13
+# iterations = 15
+# num1 = 7
 
-if (solovoyStrassen(num1, iterations)):
-    print(num1, "is prime ")
-else:
-    print(num1, "is composite")
+# if (solovoyStrassen(num1, iterations)):
+#     print(num1, "is prime ")
+# else:
+#     print(num1, "is composite")
 
-if (solovoyStrassen(num2, iterations)):
-    print(num2, "is prime")
-else:
-    print(num2, "is composite")
+n = int(input("Введите n: "))
+primes = []
+for i in range(1, n+1):
+    iterations = 5
+    if solovoyStrassen(i, iterations):
+        primes.append(i)
+print(f"Простые числа: {primes}")

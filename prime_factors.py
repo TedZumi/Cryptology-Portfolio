@@ -19,10 +19,10 @@ def create_factor_counts(factors):
     return factor_counts
 
 
-N = 509
-factors = prime_factors(N)
-factor_counts = create_factor_counts(factors)
-print(f"{N} = ", end='')
-for factor in prime_factors(N):
-    print(f"{factor}", end=' ')
-print(f"\nСтепени множителей: {factor_counts}")
+# N = 509
+# factors = prime_factors(N)
+# factor_counts = create_factor_counts(factors)
+# print(f"{N} = ", end='')
+# for factor in prime_factors(N):
+#     print(f"{factor}", end=' ')
+# print(f"\nСтепени множителей: {factor_counts}")

@@ -9,26 +9,26 @@ def calculateLegendre(q, p):
         temp *= (-1) ** ((p - 1) // 2)
         temp *= calculateLegendre(q, p)
 
-    print(f"q = {q}, p = {p}, temp = {temp}")
+    # print(f"q = {q}, p = {p}, temp = {temp}")
     q %= p
-    print(f"q = {q}, p = {p}, temp = {temp}")
+    # print(f"q = {q}, p = {p}, temp = {temp}")
 
     factors = prime_factors(q)
     factor_counts = create_factor_counts(factors)
-    print(factor_counts)
+    # print(factor_counts)
     for key, value in factor_counts.items():
-        print("key:", key, "value:", value)
+        # print("key:", key, "value:", value)
         if (key == 2) and (value % 2 != 0):
             rezult = 2 ** ((p - 1) // 2) % p
             while rezult != -1 and rezult != 1:
                 rezult -= p
             temp *= rezult
-            print("temp:", temp)
+            # print("temp:", temp)
         elif value % 2 != 0:
             temp *= (-1) ** (((key - 1) // 2) * ((p - 1) // 2))
-            print("temp:", temp)
+            # print("temp:", temp)
             temp *= calculateLegendre(p, key)
-            print("temp:", temp)
+            # print("temp:", temp)
 
     return temp
 
@@ -74,13 +74,13 @@ def extended_gcd(a, b):
     return a, x_1, y_1
 
 
-a, b = map(int, input("Введите число и модуль: ").split())
-factors = prime_factors(b)
-if len(factors) > 1:
-    nod, x_1, y_1 = extended_gcd(a, b)
-    if nod != 1:
-        print(f"{a} и {b} не взаимно простые, символ Якоби посчитать нельзя")
-    else:
-        print(f"Символ Якоби {a}/{b} = {calculateJacobian(a, factors)}")
-else:
-    print(f"Символ Лежандра {a}/{b} = {calculateLegendre(a, b)}")
+# a, b = map(int, input("Введите число и модуль: ").split())
+# factors = prime_factors(b)
+# if len(factors) > 1:
+#     nod, x_1, y_1 = extended_gcd(a, b)
+#     if nod != 1:
+#         print(f"{a} и {b} не взаимно простые, символ Якоби посчитать нельзя")
+#     else:
+#         print(f"Символ Якоби {a}/{b} = {calculateJacobian(a, factors)}")
+# else:
+#     print(f"Символ Лежандра {a}/{b} = {calculateLegendre(a, b)}")
