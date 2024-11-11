@@ -1,22 +1,22 @@
-from prime_factors import *
+from prime import *
 
 
 def euler_function(p):
     factors = prime_factors(p)
-    print(f"Простые множители: {factors}")
+    # print(f"Простые множители: {factors}")
     euler = 1
     if len(factors) == 1:
         return p - 1
     else:
         factor_counts = create_factor_counts(factors)
-        print(f"Степени простых множителей: {factor_counts}")
+        # print(f"Степени простых множителей: {factor_counts}")
         for key, value in factor_counts.items():
-            print(f"p = {key}, k = {value}")
+            # print(f"p = {key}, k = {value}")
             f_1 = key ** value
             f_2 = key ** (value - 1)
-            print(f"{f_1}, {f_2}, ", end = " ")
+            # print(f"{f_1}, {f_2}, ", end = " ")
             euler = euler * (f_1 - f_2)
-            print(f"f = {euler}")
+            # print(f"f = {euler}")
         return euler
 
 
@@ -31,4 +31,4 @@ def is_prime(n):
   return True
 
 
-print(f"Функция Эйлера: {euler_function(400)}")
+# print(f"Функция Эйлера: {euler_function(400)}")
