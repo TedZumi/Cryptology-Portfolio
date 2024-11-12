@@ -33,13 +33,13 @@ def calculate_comparison(a, b, m):
             return 0, 0
 
 
-a, b, m = map(int, input("Сравнение: ax=b(mod m) Введите a, b, m: ").split())
-result, count = calculate_comparison(a, b, m)
-if count == 0:
-    print(f"Сравнение {a}x={b}(mod {m}) не имеет решений")
-else:
-    m /= count
-    m = int(m)
-    for i in range(count):
-        print(f"{i + 1} решение: x = {result} + {m}*k, k - целое")
-        result += m
+# a, b, m = map(int, input("Сравнение: ax=b(mod m) Введите a, b, m: ").split())
+# result, count = calculate_comparison(a, b, m)
+# if count == 0:
+#     print(f"Сравнение {a}x={b}(mod {m}) не имеет решений")
+# else:
+#     m /= count
+#     m = int(m)
+#     for i in range(count):
+#         print(f"{i + 1} решение: x = {result} + {m}*k, k - целое")
+#         result += m
