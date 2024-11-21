@@ -38,6 +38,7 @@ def calculate_comparison(a, b, m):
 # if count == 0:
 #     print(f"Сравнение {a}x={b}(mod {m}) не имеет решений")
 # else:
+#     print(f"Сравнение {a}x={b}(mod {m})")
 #     m /= count
 #     m = int(m)
 #     for i in range(count):
