@@ -14,6 +14,6 @@ def calculate_ind(n, m):
     return table_ind[n]
 
 
-b, m = map(int, input("Введите число b и модуль m: ").split())
-ind = calculate_ind(b, m)
-print(f"m = {m}, ind({b}) = {ind}")
+# b, m = map(int, input("Введите число b и модуль m: ").split())
+# ind = calculate_ind(b, m)
+# print(f"m = {m}, ind({b}) = {ind}")
